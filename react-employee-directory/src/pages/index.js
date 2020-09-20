@@ -6,9 +6,14 @@ import SearchResults from "../components/SearchResults";
 import Alert from "../components/Alert";
 
 function Search() {
-  const [search, setSearch] = useState("Wikipedia");
+  const [search, setSearch] = useState("");
+  const [picture, setPicture] = usePicture("");
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
+  const [firstName, setFirstName] = useFirstName("");
+  const [lastName, setLastName] = useLastName("");
+  const [email, setEmail] = useEmail("");
+  const [phone, setPhone] = usePhone("");
+  const [id, setId] = useId("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -45,7 +50,7 @@ function Search() {
           handleInputChange={handleInputChange}
           results={search}
         />
-        <SearchResults title={title} url={url} />
+        <SearchResults picture={picture} title={title} firstName={firstName} lastName={lastName} email={email} phone={phone} id={id} />
       </Container>
     </div>
   );
