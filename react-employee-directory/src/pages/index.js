@@ -7,13 +7,13 @@ import Alert from "../components/Alert";
 
 function Search() {
   const [search, setSearch] = useState("");
-  const [picture, setPicture] = usePicture("");
-  const [title, setTitle] = useState("");
-  const [firstName, setFirstName] = useFirstName("");
-  const [lastName, setLastName] = useLastName("");
-  const [email, setEmail] = useEmail("");
-  const [phone, setPhone] = usePhone("");
-  const [id, setId] = useId("");
+  const [picture, setPicture] = useState(" ");
+  const [title, setTitle] = useState(" ");
+  const [firstName, setFirstName] = useState(" ");
+  const [lastName, setLastName] = useState(" ");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [id, setId] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -29,8 +29,13 @@ function Search() {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
         }
-        setTitle(res.data[1][0]);
-        setUrl(res.data[3][0]);
+        setPicture(res.data[0])
+        setTitle(res.data[0].name.title)
+        setFirstName(res.data[0].name.first)
+        setLastName(res.data[0].name.last)
+        setEmail(res.data[0].email)
+        setPhone(res.data[0].phone)
+        setId(res.data[0].id.value);
       })
       .catch(err => setError(err));
   }, [search]);
