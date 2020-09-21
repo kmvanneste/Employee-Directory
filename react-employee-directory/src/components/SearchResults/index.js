@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 
 function SearchResults(props) {
+
   return (
     <ul className="list-group search-results">
         <li className="list-group-item" key={props.id}>
@@ -14,5 +15,6 @@ function SearchResults(props) {
         </li>
     </ul>
   )}
+
 
 export default SearchResults;
