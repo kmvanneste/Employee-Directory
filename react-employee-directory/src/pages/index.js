@@ -3,20 +3,17 @@ import API from "../utils/API";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-import Alert from "../components/Alert";
 
 class Search extends Component {
   state = {
     search: "",
     employees: [],
     results: [],
-    error: "",
   }
 
 componentDidMount() {
   API.getEmployees()
     .then((res) => {
-    // console.log("res.data.results: ", res.data.results);
     let employee = res.data.results.map((employee) => {
       return {
         img: employee.picture.thumbnail,
@@ -25,6 +22,7 @@ componentDidMount() {
         phone: employee.phone,
         city: employee.location.city,
         state: employee.location.state,
+        id: employee.id,
       }
     });
     this.setState({ 
@@ -36,7 +34,11 @@ componentDidMount() {
 }
 
 handleInputChange = event => {
-    this.setState({ search: event.target.value})
+  const name = event.target.name;
+  const value = event.target.value;
+  this.setState({
+    [name]: value
+  });
   };
 
 render() {
@@ -45,12 +47,8 @@ render() {
       <Container style={{ minHeight: "100vh" }}>
         <h1 className="text-center">Search For Any Employee</h1>
 
-        <Alert type="danger" style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}>
-          {this.state.error}
-        </Alert>
-
         <SearchForm
-          handleFormSubmit={this.handleFormSubmit}
+          search={this.state.search}
           handleInputChange={this.handleInputChange}
           employees={this.state.employees}
         />
@@ -64,5 +62,4 @@ render() {
   );
 }
 }
-
 export default Search;

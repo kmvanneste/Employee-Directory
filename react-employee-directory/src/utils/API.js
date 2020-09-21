@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  getEmployees: () => {
+  search: () => {
     return axios.get('https://randomuser.me/api/?results=1000');
   }
 };
