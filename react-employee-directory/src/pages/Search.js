@@ -6,30 +6,25 @@ import SearchResults from "../components/SearchResults";
 
 class Search extends Component {
   state = {
-    employees: [],
-    results: [],
+    employees: [{}],
+    filteredEmployees: [{}],
   }
 
 componentDidMount() {
   API.getEmployees()
     .then(res => {
       console.log(res.data.results);
-    let employee = res.data.results.map((employee) => {
-      return {
-        img: employee.picture.thumbnail,
-        name: employee.name,
-        email: employee.email,
-        phone: employee.phone,
-        city: employee.location.city,
-        state: employee.location.state,
-        id: employee.id,
-      }
-    });
-    this.setState({ 
-      employees: employee,
-    })
+      this.setState({ employees: res.data.results, filteredEmployees: res.data.results })
     })
     .catch(err => console.log(err));
+}
+
+handleInputChange() {
+
+}
+
+handleSort() {
+
 }
 
 render() {
@@ -37,15 +32,13 @@ render() {
     <div>
       <Container style={{ minHeight: "100vh" }}>
         <h1 className="text-center">Employee Directory</h1>
-
         <SearchForm
-          employees={this.state.employees}
+          handleInputChange={this.handleInputChange}
         />
-
         <SearchResults
-          results={this.state.employees}
+          employees={this.state.filteredEmployees}
+          handleSort={this.handleSort}
         />
-
       </Container>
     </div>
   );
