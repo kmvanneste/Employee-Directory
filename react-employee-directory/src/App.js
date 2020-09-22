@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import Search from "./pages/Search";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,15 +8,15 @@ import "./App.css";
 function App() {
   document.title = "Employee Directory";
   return (
-    <Router>
+    
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={Search} />
+          <Search />
         </Wrapper>
         <Footer />
       </div>
-    </Router>
+    
   );
 }
 

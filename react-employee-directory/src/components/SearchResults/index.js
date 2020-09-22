@@ -1,13 +1,13 @@
 import React from "react";
 import "./style.css";
 
-export default function SearchResults( {employees} ) {
+export default function SearchResults( {employees, handleSort} ) {
   return (
     <table>
       <thead>
           <tr>
               <th>Photo</th>
-              <th>Name</th>
+              <th onClick={() => {handleSort(employees.name)}}>Name</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Date of Birth</th>
