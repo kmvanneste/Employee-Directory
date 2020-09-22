@@ -3,6 +3,7 @@ import API from "../utils/API";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
+// import Table from "../components/SearchResultsTable"
 
 class Search extends Component {
   state = {

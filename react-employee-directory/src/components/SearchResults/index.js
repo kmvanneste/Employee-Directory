@@ -1,31 +1,32 @@
 import React from "react";
 import "./style.css";
 
-function SearchResults( {employees} ) {
-console.log("props", employees);
+export default function SearchResults( {employees} ) {
   return (
-    <ul className="list-group search-results">
+    <table>
+    <tr>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date of Birth</th>
+    </tr>
       {employees[0]!== undefined && employees[0].name !==undefined ? (
-      employees.map(
-        ({login, picture, name, email, phone, location}) => {
+      employees.map(({login, picture, name, email, phone, dob}) => {
           return (
-        <li className="list-group-item" key={login.uuid}>
-          <img src={picture.thumbnail}></img>
-          <h5>{name.title} {name.first} {name.last}</h5>
-          <p><a href={"mailto:" + email}>{email}</a></p>
-          {phone}
-          {location.city}
-          {location.state}
-        </li> 
+        <td className="list-group-item" key={login.uuid}>
+            <td>
+                <img alt={`employee`} src={picture.thumbnail}></img>
+            </td>
+            <td>{name.title} {name.first} {name.last}</td>
+            <td><a href={"mailto:" + email}>{email}</a></td>
+            <td>{phone}</td>
+            <td>{dob.date.substring(0, 10)}</td>
+        </td> 
           )})): 
           (
             <></>
           )
           }
-    </ul>
+    </table>
   )}
-  
-
-
-
-export default SearchResults;
