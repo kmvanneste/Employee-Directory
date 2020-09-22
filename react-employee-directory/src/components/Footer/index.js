@@ -4,7 +4,7 @@ import "./style.css";
 function Footer() {
   return (
     <footer className="footer">
-      <span>Employee Search</span>
+      <span>Copyright © 2020</span>
     </footer>
   );
 }

@@ -3,10 +3,10 @@ import API from "../utils/API";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-// import Table from "../components/SearchResultsTable"
 
 class Search extends Component {
   state = {
+    search: "",
     employees: [{}],
     filteredEmployees: [{}],
   }
@@ -20,25 +20,42 @@ componentDidMount() {
     .catch(err => console.log(err));
 }
 
-handleInputChange() {
-
+handleInputChange = event => {
+ this.setState({search: event.target.value})
 }
 
-handleSort() {
+handleFormSubmit = event => {
+  event.preventDefault();
+   if (event.target.value === (" ")) {
+      this.setState({ filteredEmployees: event.target.value })
+    }
+  }
 
-}
+sortAscending = () => {
+    const { filteredEmployees } = this.state;
+    filteredEmployees.sort((a, b) => a - b)    
+    this.setState({ filteredEmployees })
+  }
+
+sortDescending = () => {
+    const { filteredEmployees } = this.state;
+    filteredEmployees.sort((a, b) => a - b).reverse()
+    this.setState({ filteredEmployees })
+  }
 
 render() {
   return (
     <div>
       <Container style={{ minHeight: "100vh" }}>
-        <h1 className="text-center">Employee Directory</h1>
+        <h1 className="text-center" style={{margin: "20px"}}>Employee Directory</h1>
         <SearchForm
           handleInputChange={this.handleInputChange}
+          handleFormSubmit={this.handleFormSubmit}
         />
         <SearchResults
           employees={this.state.filteredEmployees}
-          handleSort={this.handleSort}
+          sortAscending={this.sortAscending}
+          sortDescending={this.sortDescending}
         />
       </Container>
     </div>
