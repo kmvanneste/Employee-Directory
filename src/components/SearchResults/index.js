@@ -7,7 +7,7 @@ export default function SearchResults( {employees, handleSort} ) {
       <thead>
           <tr>
               <th>Photo</th>
-              <th onClick={() => {handleSort(employees.name)}}>Name</th>
+              <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Date of Birth</th>
