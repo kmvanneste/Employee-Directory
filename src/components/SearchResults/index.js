@@ -13,7 +13,7 @@ export default function SearchResults( {employees, handleSort} ) {
               <th>Date of Birth</th>
           </tr>
     </thead>
-     <tbody>{employees[0]!== undefined && employees[0].name !==undefined ? (
+    <tbody>{employees[0]!== undefined && employees[0].name !==undefined ? (
       employees.map(({login, picture, name, email, phone, dob}) => {
           return (
           <tr key={login.uuid}>
